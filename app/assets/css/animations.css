@@ -1,0 +1,129 @@
+/* Fade In */
+.fade-in {
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Slide Up */
+.slide-up {
+  animation: slideUp 0.8s ease-out forwards;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Soft Glow */
+.glow {
+  animation: glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 20px rgba(255, 150, 190, 0.35),
+                0 0 35px rgba(255, 180, 210, 0.25);
+  }
+  to {
+    box-shadow: 0 0 45px rgba(255, 160, 200, 0.55),
+                0 0 70px rgba(255, 200, 230, 0.35);
+  }
+}
+
+/* Typewriter */
+.typewriter {
+  overflow: hidden;
+  border-right: 2px solid #fff;
+  white-space: nowrap;
+  width: 0;
+  animation:
+    typing 3s steps(40, end) forwards,
+    blink 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink {
+  50% { border-color: transparent }
+}
+
+/* Sparkles flotantes con animación suave */
+.sparkle {
+  position: relative;
+  animation: sparkleFloat 4s ease-in-out infinite;
+  opacity: 0.8;
+}
+
+.sparkle::after {
+  content: '✨';
+  position: absolute;
+  animation: sparkle 1.3s infinite;
+  opacity: 0;
+}
+
+
+@keyframes sparkleFloat {
+  0% { transform: translateY(0px) scale(1); opacity: 0; }
+  25% { transform: translateY(-10px) scale(1.1); opacity: 1; }
+  50% { transform: translateY(5px) scale(0.95); }
+  75% { transform: translateY(-5px) scale(1.05); }
+  100% { transform: translateY(0px) scale(1); opacity: 0; }
+}
+
+/* Soft Floating Pastel Pils */
+.pill-soft {
+  background: rgba(255, 182, 193, 0.28); /* rosa pastel */
+  color: #b23a68;
+  border-radius: 9999px;
+  padding: 8px 18px;
+  border: 1px solid rgba(255, 200, 210, 0.55);
+  backdrop-filter: blur(6px);
+
+  animation: pillFloat 3s ease-in-out infinite;
+  transform-origin: center;
+  display: inline-block;
+}
+
+/* Animación suave */
+@keyframes pillFloat {
+  0% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: translateY(-8px) scale(1.04);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.85;
+  }
+}
+
+
+
+/* Animación de Flotación Suave (Ajustada para un movimiento más natural) */
+@keyframes floatSoft {
+  /* Empieza invisible (opacity: 0) */
+  0% { transform: translateY(0px); opacity: 0; }
+  /* Primera mitad: Aparece (opacity: 1) y sube */
+  25% { transform: translateY(-8px); opacity: 1; } 
+  /* Segunda mitad: Baja (movimiento principal) */
+  75% { transform: translateY(8px); }
+  /* Vuelve al centro para repetir el ciclo (mantenemos opacity: 1) */
+  100% { transform: translateY(0px); opacity: 1; }
+}
+

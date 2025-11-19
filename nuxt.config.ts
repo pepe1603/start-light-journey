@@ -7,5 +7,8 @@ export default defineNuxtConfig({
   modules: ['@nuxt/ui'],
 
   // 2. Registramos el CSS global (que crearemos ahora)
-  css: ['~/assets/css/main.css']
+  css: ['~/assets/css/main.css'],
+  
+  
 })
+
