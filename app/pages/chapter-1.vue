@@ -49,12 +49,12 @@ const words = [
       size="md"
         v-for="(w, i) in words"
         :key="i"
-        class="text-pink-300 font-bold px-4 py-2 rounded-full "
+        class="text-pink-300 font-bold px-4 py-2 rounded-full"
         :style="{
           background: 'rgba(255, 182, 193, 0.35)',  /* rosa pastel suave */
           backdropFilter: 'blur(6px)',
           border: '1px solid rgba(255, 200, 210, 0.5)',
-          animation: `pillFloat 2.3s ease-in-out ${i * 0.18}s infinite`
+          animation: `sparkle 7.5s ease-in-out ${i * 0.18}s infinite`
         }"
       >
         {{ w }}
@@ -62,9 +62,7 @@ const words = [
     </div>
 
     <UButton
-      color="pink"
-
-      class="mt-10 px-7 py-3 glow-big"
+      class="mt-10 px-7 py-3 animate-bounce"
       @click="router.push('/chapter-2')"
     >
       Continuar

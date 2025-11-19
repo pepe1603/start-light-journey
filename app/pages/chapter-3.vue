@@ -22,8 +22,7 @@ const message = "Cada instante contigo es único 💖"
 
     <!-- Botón para continuar al final -->
     <UButton
-      color="pink"
-      class="mt-12 px-12 py-4 glow text-white rounded-xl animate-bounce"
+      class="mt-12 px-12 py-4 animate-bounce"
       @click="router.push('/final')"
     >
       Continuar ✨

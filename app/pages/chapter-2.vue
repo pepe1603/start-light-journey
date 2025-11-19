@@ -2,13 +2,39 @@
 import { ref } from "vue"
 const router = useRouter()
 
-// Controlar la animación del texto escrito por card
-const typingActive = ref([false, false, false])
+// Definir las cards
+const cards = [
+  {
+    img: "https://wallpapers.com/images/high/your-name-anime-2016-lovers-meeting-comet-ipwnayt5ksgfoo11.webp",
+    text: "Cuando estás cerca… todo se siente más bonito."
+  },
+  {
+    img: "https://wallpapers.com/images/high/mitsuhas-marker-your-name-4k-es32bfkbxcrwrq2i.webp",
+    text: "Tu sonrisa tiene magia… ilumina cualquier día."
+  },
+  {
+    img: "https://wallpapers.com/images/high/mitsuha-and-taki-back-hug-romance-anime-x4nkctz2w8vhvbuj.webp",
+    text: "Y tu forma de ser… simplemente me encanta."
+  },
+  {
+    img: "https://wallpapers.com/images/high/blushing-nino-nakano-in-uniform-0dt3ma3b03lrkn51.webp",
+    text: "Cada instante contigo me hace sonreír 😊"
+  },
+  {
+    img: "https://img.freepik.com/foto-gratis/estilo-anime-celebrando-dia-san-valentin_23-2151258030.jpg?semt=ais_hybrid&w=740&q=80",
+    text: "Los recuerdos que compartimos son mágicos ✨"
+  },
+  {
+    img: "https://wallpapers.com/images/high/snoopy-1920-x-1200-background-4wfr75q5k18qx0jz.webp",
+    text: "Quiero que estos momentos duren para siempre 💖"
+  }
+]
+
+// Array de control para animación typewriter según cantidad de cards
+const typingActive = ref(cards.map(() => false))
 
 const activateTyping = (index) => {
   typingActive.value[index] = false
-
-  // Pequeño delay para reiniciar animación
   setTimeout(() => {
     typingActive.value[index] = true
   }, 50)
@@ -17,21 +43,6 @@ const activateTyping = (index) => {
 const deactivateTyping = (index) => {
   typingActive.value[index] = false
 }
-
-const cards = [
-  {
-    img: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
-    text: "Cuando estás cerca… todo se siente más bonito."
-  },
-  {
-    img: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04",
-    text: "Tu sonrisa tiene magia… ilumina cualquier día."
-  },
-  {
-    img: "https://images.unsplash.com/photo-1519681393784-d120267933ba",
-    text: "Y tu forma de ser… simplemente me encanta."
-  }
-]
 </script>
 
 <template>
@@ -40,6 +51,12 @@ const cards = [
     <h1 class="text-4xl text-pink-400 font-bold slide-up text-center">
       Capítulo 2 — Momentos 🌸
     </h1>
+
+    
+    <p class="my-1 p-2 text-sm text-center text-gray-600 italic animate-pulse">
+        Coloca el cursor ssobre la tarjeta para ver la magia ...
+
+    </p>
 
     <!-- GRID DE CARDS -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -51,7 +68,6 @@ const cards = [
         @mouseleave="deactivateTyping(i)"
         @touchstart="activateTyping(i)"
       >
-
         <!-- Imagen -->
         <img
           :src="c.img"
@@ -63,30 +79,28 @@ const cards = [
           class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center p-6"
         >
           <p
+          class="relative max-h-3/12 italic"
             :class="[
-              'text-white text-lg font-medium text-center leading-snug',
-              typingActive[i] ? 'typewriter' : 'opacity-0'
+                'text-white text-lg font-medium text-center leading-snug',
+                typingActive[i] ? 'typewriter' : 'opacity-0'
             ]"
             style="max-width: 90%;"
           >
             {{ c.text }}
           </p>
         </div>
-
       </div>
     </div>
 
     <div class="flex justify-center">
       <UButton
         size="lg"
-        color="error"
-        class="mt-8 px-10 py-4 glow bg-pink-500 hover:bg-pink-600 text-white rounded-xl"
+        class="mt-8 px-10 py-4 animate-bounce"
         @click="router.push('/chapter-3')"
       >
         Continuar ✨
       </UButton>
     </div>
-
   </div>
 </template>
 
@@ -100,25 +114,18 @@ const cards = [
   transform: translateY(-10px) scale(1.03);
 }
 
-/* Ajustar typewriter dentro del overlay */
+/* Ajustar typewriter dentro del overlay para que haga wrap */
 .typewriter {
   overflow: hidden;
-  white-space: nowrap;
+  white-space: normal; /* Permite saltos de línea */
   border-right: 2px solid #fff;
+  display: inline-block; /* Para que el ancho dependa del texto */
   width: 0;
   animation:
-    typing 2.2s steps(30, end) forwards,
+    typing 2.5s steps(40, end) forwards,
     blink 0.75s step-end infinite;
+  word-wrap: break-word;
+  text-align: center;
 }
 
-/* Efecto typing */
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
-}
-
-/* Parpadeo del cursor */
-@keyframes blink {
-  50% { border-color: transparent }
-}
 </style>
